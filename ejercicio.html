@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AREY - Control de Ingresos y Egresos</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    header {
+      background-color: #556b2f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+    header h2 {
+      font-size: 0.6em;
+      margin-top: 8px;
+    }
+    form {
+      padding: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    select, input[type="number"], textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #791958;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #a36a91;
+      cursor: not-allowed;
+    }
+    .hidden {
+      display: none;
+    }
+    @media (max-width: 600px) {
+      form {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AREY</h1>
+      <h2>Control de Ingresos y Egresos</h2>
+    </header>
+    <form id="formulario">
+      <label>Unidad de negocio:
+        <select id="unidad" required>
+          <option value="">Selecciona…</option>
+          <option>AREY Morelia</option>
+          <option>AREY Capacitación</option>
+          <option>AREY Foráneo</option>
+        </select>
+      </label>
+
+      <label>Registró:
+        <select id="registro" required>
+          <option value="">Selecciona…</option>
+          <option>Yera</option>
+          <option>Sara</option>
+          <option>Marlene</option>
+        </select>
+      </label>
+
+      <label>Tipo de movimiento:
+        <select id="tipoMovimiento" required>
+          <option value="">Selecciona…</option>
+          <option value="ingreso">Ingreso</option>
+          <option value="egreso">Egreso</option>
+        </select>
+      </label>
+
+      <div id="ingresoFields" class="hidden">
+        <label>Tipo de ingreso:
+          <select id="tipoIngreso">
+            <option value="">Selecciona…</option>
+            <option>Delineado de ojos</option>
+            <option>Depilación con cera</option>
+            <option>Extensiones de pestañas</option>
+            <option>Masajes, Micropigmentación de cejas</option>
+            <option>Micropigmentación de labios</option>
+            <option>Micropigmentación de ojos</option>
+            <option>Plasma rico en plaquetas</option>
+            <option>Power brows</option>
+            <option>Tratamientos faciales</option>
+            <option>Tratamientos reductivos</option>
+            <option>Depilación laser</option>
+            <option>Curso labios y ojos</option>
+            <option>Curso labios</option>
+            <option>Curso ojos</option>
+            <option>Curso de cejas, labios y ojos </option>
+            <option>Curso micropigmentación de cejas</option>
+            <option>Curso de cera española</option>
+            <option>Curso Prp,Dermapen y BB Glow</option>
+            <option>Curso Prp</option>
+            <option>Curso Botox</option>
+            <option>Curso micro pintura brasileña</option>
+            <option>Curso Dermapen</option>
+            <option>Curso BB Glow</option>
+            <option>Curso Plasma Pen</option>
+            <option>Curso mesoterapia</option>
+            <option>Curso primeros auxilios</option>
+            <option>Curso de asepsia y anti asepsia</option>
+            <option>Diplomado de auxiliar de enfermería</option>
+            <option>Diplomado de micropigmentación facial</option>
+            <option>Diplomado de podología</option>
+            <option>Diplomado dermocosmetologia</option>
+            <option value="otros">Otros</option>
+          </select>
+        </label>
+        <label id="especificarIngresoLabel" class="hidden">Especificar servicio o curso cobrado:
+          <textarea id="especificarIngreso"></textarea>
+        </label>
+        <label>Forma de captación:
+          <select id="captacion">
+            <option value="">Selecciona…</option>
+            <option>Cliente habitual</option>
+            <option>Recomendación</option>
+            <option>Publicación pagada</option>
+            <option>Publicación orgánica</option>
+            <option>Alumno</option>
+          </select>
+        </label>
+        <label>Realizó el servicio:
+          <select id="realizoServicio">
+            <option value="">Selecciona…</option>
+            <option>Yera</option>
+            <option>Sara</option>
+          </select>
+        </label>
+        <label>Forma de pago:
+          <select id="formaPago">
+            <option value="">Selecciona…</option>
+            <option>Efectivo</option>
+            <option>Tarjeta</option>
+            <option>Transferencia</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="egresoFields" class="hidden">
+        <label>Tipo de egreso:
+          <select id="tipoEgreso">
+            <option value="">Selecciona…</option>
+            <option>Adquisición de mercancías</option>
+            <option>Cafetería (Café, Té, azúcar, agua, refresco)</option>
+            <option>Extracción de utilidad</option>
+            <option>Limpieza e higiene</option>
+            <option>Mantenimiento</option>
+            <option>Mobiliario y equipos</option>
+            <option>Nomina</option>
+            <option>Pago de comisiones</option>
+            <option>Papelería</option>
+            <option>Publicidad</option>
+            <option>Renta</option>
+            <option>Servicios (Agua, luz, internet)</option>
+            <option>Viaticos (Gastos de trasporte, alimentos, hospedaje)</option>
+            <option>Gastos personales</option>
+            <option value="otros">Otros</option>
+          </select>
+        </label>
+        <label id="especificarEgresoLabel" class="hidden">Especificar el tipo de egreso:
+          <textarea id="especificarEgreso"></textarea>
+        </label>
+      </div>
+
+      <label>Monto:
+        <input type="number" id="monto" required min="0">
+      </label>
+
+      <label>Observaciones:
+        <textarea id="observaciones"></textarea>
+      </label>
+
+      <button type="submit" id="submitBtn">Enviar</button>
+      <p id="mensaje" role="alert" style="margin-top: 10px;"></p>
+    </form>
+  </div>
+
+  <script>
+    const tipoMovimiento = document.getElementById('tipoMovimiento');
+    const ingresoFields = document.getElementById('ingresoFields');
+    const egresoFields = document.getElementById('egresoFields');
+    const tipoIngreso = document.getElementById('tipoIngreso');
+    const tipoEgreso = document.getElementById('tipoEgreso');
+    const especificarIngresoLabel = document.getElementById('especificarIngresoLabel');
+    const especificarEgresoLabel = document.getElementById('especificarEgresoLabel');
+    const formulario = document.getElementById('formulario');
+    const submitBtn = document.getElementById('submitBtn');
+    const mensaje = document.getElementById('mensaje');
+
+    tipoMovimiento.addEventListener('change', () => {
+      ingresoFields.classList.toggle('hidden', tipoMovimiento.value !== 'ingreso');
+      egresoFields.classList.toggle('hidden', tipoMovimiento.value !== 'egreso');
+    });
+
+    tipoIngreso.addEventListener('change', () => {
+      especificarIngresoLabel.classList.toggle('hidden', tipoIngreso.value !== 'otros');
+    });
+
+    tipoEgreso.addEventListener('change', () => {
+      especificarEgresoLabel.classList.toggle('hidden', tipoEgreso.value !== 'otros');
+    });
+
+    formulario.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      const datos = {
+        unidad: document.getElementById('unidad').value,
+        registro: document.getElementById('registro').value,
+        tipoMovimiento: tipoMovimiento.value,
+        tipoIngreso: tipoIngreso.value,
+        especificarIngreso: document.getElementById('especificarIngreso').value,
+        captacion: document.getElementById('captacion').value,
+        realizoServicio: document.getElementById('realizoServicio').value,
+        formaPago: document.getElementById('formaPago').value,
+        tipoEgreso: tipoEgreso.value,
+        especificarEgreso: document.getElementById('especificarEgreso').value,
+        monto: document.getElementById('monto').value,
+        observaciones: document.getElementById('observaciones').value
+      };
+
+      const firma = JSON.stringify(datos);
+      if (sessionStorage.getItem('ultimoEnvio') === firma) {
+        mensaje.textContent = '⚠️ Este registro ya fue enviado recientemente.';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar';
+        return;
+      }
+
+      if (tipoMovimiento.value === 'ingreso') {
+        if (!tipoIngreso.value) {
+          mensaje.textContent = '⚠️ Selecciona un tipo de ingreso.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar';
+          return;
+        }
+        if (tipoIngreso.value === 'otros' && !datos.especificarIngreso.trim()) {
+          mensaje.textContent = '⚠️ Especifica el tipo de ingreso.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar';
+          return;
+        }
+      }
+
+      if (tipoMovimiento.value === 'egreso') {
+        if (!tipoEgreso.value) {
+          mensaje.textContent = '⚠️ Selecciona un tipo de egreso.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar';
+          return;
+        }
+        if (tipoEgreso.value === 'otros' && !datos.especificarEgreso.trim()) {
+          mensaje.textContent = '⚠️ Especifica el tipo de egreso.';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Enviar';
+          return;
+        }
+      }
+
+      try {
+        const res = await fetch('https://script.google.com/macros/s/AKfycbwP5wo-rQFIaRuM3TBgks1YWFaW21rCJcpMCjeNd6N_i4cHim3vw9LuHL52vMkMG7QKUg/exec', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(datos)
+        });
+        const result = await res.json();
+        mensaje.textContent = '✅ Registro guardado exitosamente.';
+        sessionStorage.setItem('ultimoEnvio', firma);
+        formulario.reset();
+        ingresoFields.classList.add('hidden');
+        egresoFields.classList.add('hidden');
+        especificarIngresoLabel.classList.add('hidden');
+        especificarEgresoLabel.classList.add('hidden');
+      } catch (error) {
+        mensaje.textContent = `❌ Error al enviar los datos: ${error.message}`;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar';
+      }
+    });
+  </script>
+</body>
+</html>
